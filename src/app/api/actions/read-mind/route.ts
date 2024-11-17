@@ -28,7 +28,7 @@ export const GET = async (req: Request) => {
     const payload: ActionGetResponse = {
       type: 'action',
       title: 'Play the Telepathic Wikipedia Game',
-      icon: 'http://127.0.0.1:3000/homepage.png', // Update with an appropriate icon URL
+      icon: `${requestUrl.origin}/homepage.png`,
       description:
         'Think of a three-digit number, follow the steps, and see the prediction!',
       label: 'Start the Game (Inserting a Coin)',
