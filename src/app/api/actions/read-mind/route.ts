@@ -99,7 +99,7 @@ export const POST = async (req: Request) => {
     }
 
     const connection = new Connection(
-      process.env.SOLANA_RPC! || clusterApiUrl('mainnet-beta'),
+      process.env.SOLANA_RPC || clusterApiUrl('devnet'),
     );
 
     const minimumBalance = await connection.getMinimumBalanceForRentExemption(
