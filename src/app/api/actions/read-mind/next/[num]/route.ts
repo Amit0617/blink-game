@@ -134,7 +134,7 @@ export const POST = async (req: Request) => {
       };
       return Response.json(payload, { headers });
     } else if (num === '6') {
-      let numbers = splitNumber(1089 + randomNumber);
+      let numbers: any = splitNumber(1089 + randomNumber);
       console.log(numbers, randomNumber);
       if (numbers === 'Input must be a 4-digit number') {
         return new Response('Retry, There was some error!', {
