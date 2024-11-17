@@ -98,7 +98,7 @@ export const POST = async (req: Request) => {
     } else if (num === '4') {
       let payload: Action = {
         type: 'action',
-        icon: `${requestUrl.origin}/homepage.png`,
+        icon: `${requestUrl.origin}/how.png`,
         title:
           'Step 4: You must have a 4 digit number now! Enter the first 3 digits in Wikipedia index(https://en.wikipedia.org/wiki/Special:AllPages/{FirstThreeDigits}) and open the last digit article.',
         description: `e.g. If you got ${exampleNumber}, navigate to https://en.wikipedia.org/wiki/Special:AllPages/123 and open the 4th article.\n Make sure to keep it private! Open that link in incognito mode or maybe on another device. Open the article and think about the title and read a bit about it. We will try to guess the article.`,
@@ -117,7 +117,7 @@ export const POST = async (req: Request) => {
     } else if (num === '5') {
       let payload: Action = {
         type: 'action',
-        icon: `${requestUrl.origin}/homepage.png`,
+        icon: `${requestUrl.origin}/think.webp`,
         title: 'Step 5: Think of the Article and Click Next',
         description:
           'Think of the article title, specifically what is it, take a moment to craft a one liner in your mind to explain it to someone else. We are trying to match your brain waves!',
