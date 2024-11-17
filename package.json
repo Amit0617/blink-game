@@ -14,11 +14,13 @@
     "@solana/web3.js": "^1.95.2",
     "@tabler/icons": "^3.11.0",
     "@tabler/icons-react": "^3.11.0",
+    "jsdom": "^25.0.1",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/jsdom": "^21.1.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
