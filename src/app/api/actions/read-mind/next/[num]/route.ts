@@ -143,13 +143,12 @@ export const POST = async (req: Request) => {
         });
       }
       let el: any = new JSDOM.JSDOM().window.document.createElement('div');
-      await fetch(
-        `${process.env.SCRAPE_URL}${process.env.SCRAPE_API}&url=${process.env.WIKIPEDIA}${numbers[0]}`,
-      )
+      await fetch(`${process.env.WIKIPEDIA}${numbers[0]}/api.php`)
         .then((response) => {
-          return response.json();
+          return response.text();
         })
         .then((data) => {
+          // console.log(data);
           el.innerHTML = data;
         });
       let similarBrainWavesList =
