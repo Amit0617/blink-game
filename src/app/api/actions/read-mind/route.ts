@@ -35,31 +35,9 @@ export const GET = async (req: Request) => {
       links: {
         actions: [
           {
-            type: 'transaction',
-            label: 'Begin Game (Custom Amount)',
-            href: `${baseHref}&amount={amount}`,
-            parameters: [
-              {
-                name: 'amount',
-                label: 'Enter the amount of SOL to start the game',
-                required: true,
-              },
-            ],
-          },
-          {
-            type: 'transaction',
-            label: 'Begin Game (0.1 SOL)',
-            href: `${baseHref}&amount=${'0.1'}`,
-          },
-          {
-            type: 'transaction',
-            label: 'Begin Game (1 SOL)',
-            href: `${baseHref}&amount=${'1'}`,
-          },
-          {
-            type: 'transaction',
-            label: 'Begin Game (5 SOL)',
-            href: `${baseHref}&amount=${'5'}`,
+            type: 'post',
+            label: "Let's Play!",
+            href: `${baseHref}`,
           },
         ],
       },
@@ -124,19 +102,17 @@ export const POST = async (req: Request) => {
       lastValidBlockHeight,
     }).add(transferSolInstruction);
 
-    const payload: ActionPostResponse = await createPostResponse({
-      fields: {
-        type: 'transaction',
-        transaction,
-        message: `Sent ${amount} SOL to MindReader: ${pubKey.toBase58()}`,
-        links: {
-          next: {
-            type: 'post',
-            href: '/api/actions/read-mind/next/1',
-          },
+    const payload: ActionPostResponse = {
+      type: 'post',
+      // transaction,
+      // message: `Sent ${amount} SOL to MindReader: ${pubKey.toBase58()}`,
+      links: {
+        next: {
+          type: 'post',
+          href: '/api/actions/read-mind/next/1',
         },
       },
-    });
+    };
 
     return Response.json(payload, {
       headers,
