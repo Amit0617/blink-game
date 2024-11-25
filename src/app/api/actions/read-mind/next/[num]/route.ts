@@ -20,7 +20,8 @@ let response: {
   description: any;
 };
 
-const randomNumber = Math.floor(Math.random() * 1000);
+// generate a random number between 1 and 8900 (inclusive)
+const randomNumber = Math.floor(Math.random() * 8900) + 1;
 
 export const POST = async (req: Request) => {
   try {
@@ -31,7 +32,6 @@ export const POST = async (req: Request) => {
       requestUrl.origin,
     ).toString();
 
-    // generate a random number between 0 and 999
     const exampleNumber = 1234;
 
     if (num == '1') {
