@@ -61,7 +61,7 @@ export const POST = async (req: Request) => {
         icon: `${requestUrl.origin}/homepage.png`,
         title:
           'Step 2: Use the result and Reverse the Digits of Your Number. Then Add both numbers together.',
-        description: 'e.g. If you got 456, the result is 456 + 654 = 1110.',
+        description: 'e.g. If you got 789, the result is 789 + 987 = 1776.',
         label: 'Next',
         links: {
           actions: [
@@ -79,9 +79,9 @@ export const POST = async (req: Request) => {
       let payload: Action = {
         type: 'action',
         icon: `${requestUrl.origin}/homepage.png`,
-        title: `Step 3: Add Random Number to the Result: ${randomNumber}`,
-        description: `e.g. If you got 1110, the result is 1110 + ${randomNumber} = ${
-          1110 + randomNumber
+        title: `Step 3: Add this randomly generated number to the result: ${randomNumber}`,
+        description: `e.g. Let's say your sum is 1776, the result in that case would be 1776 + ${randomNumber} = ${
+          1776 + randomNumber
         }.`,
         label: 'Next',
         links: {
@@ -101,7 +101,7 @@ export const POST = async (req: Request) => {
         icon: `${requestUrl.origin}/how.png`,
         title:
           'Step 4: You must have a 4 digit number now! Enter the first 3 digits in Wikipedia index(https://en.wikipedia.org/wiki/Special:AllPages/{FirstThreeDigits}) and open the last digit article.',
-        description: `e.g. If you got ${exampleNumber}, navigate to https://en.wikipedia.org/wiki/Special:AllPages/123 and open the 4th article.\n Make sure to keep it private! Open that link in incognito mode or maybe on another device. Open the article and think about the title and read a bit about it. We will try to guess the article.`,
+        description: `e.g. If you got ${exampleNumber}, navigate to https://en.wikipedia.org/wiki/Special:AllPages/123 and open the 4th (start counting from 0) article.\n Make sure to keep it private! Open that link in incognito mode or maybe on another device. Open the article and think about the title and read a bit about it. We will try to guess the article.`,
         label: 'Next',
         links: {
           actions: [
@@ -155,7 +155,7 @@ export const POST = async (req: Request) => {
         el.getElementsByClassName('mw-allpages-chunk')[0];
       let desiredArticle = similarBrainWavesList
         .getElementsByTagName('li')
-        [numbers[1] - 1].getElementsByTagName('a')[0].title;
+        [numbers[1]].getElementsByTagName('a')[0].title;
       await fetch(`${process.env.WIKI_DB}${desiredArticle}`)
         .then((response) => {
           return response.json();
@@ -163,12 +163,33 @@ export const POST = async (req: Request) => {
         .then((data) => {
           response = data;
         });
-      let payload: CompletedAction = {
-        type: 'completed',
+      let payload: Action = {
+        type: 'action',
         icon: `${requestUrl.origin}/homepage.png`,
         title: `Are you thinking of a ${response.description} ?`,
         description: `Is this article about ${response.title}? We found a great match: ${response.extract}`,
-        label: 'Finish',
+        label: 'Loved it!, Donate to the creator',
+        links: {
+          actions: [
+            {
+              type: 'transaction',
+              label: 'Loved it! Donate to the creator',
+              href: `${baseHref}/6?amount={amount}`,
+              parameters: [
+                {
+                  name: 'amount',
+                  label: 'Enter the amount of SOL to donate',
+                  required: true,
+                },
+              ],
+            },
+            {
+              type: 'external-link',
+              label: 'Not Impressed? Play Again! (Free)',
+              href: `${baseHref}`,
+            },
+          ],
+        },
       };
       return Response.json(payload, { headers });
     }
