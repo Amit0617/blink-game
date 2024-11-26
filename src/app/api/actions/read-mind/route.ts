@@ -1,10 +1,8 @@
 import {
   ActionPostResponse,
   ActionGetResponse,
-  ActionPostRequest,
   createActionHeaders,
 } from '@solana/actions';
-import { PublicKey } from '@solana/web3.js';
 
 const headers = createActionHeaders();
 

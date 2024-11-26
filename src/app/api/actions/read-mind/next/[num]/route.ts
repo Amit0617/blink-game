@@ -1,4 +1,4 @@
-import { Action, CompletedAction, createActionHeaders } from '@solana/actions';
+import { Action, createActionHeaders } from '@solana/actions';
 import JSDOM from 'jsdom';
 const headers = createActionHeaders();
 

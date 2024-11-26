@@ -34,7 +34,7 @@ export const POST = async (req: Request) => {
     }
 
     const connection = new Connection(
-      process.env.SOLANA_RPC || clusterApiUrl('devnet'),
+      process.env.SOLANA_RPC || clusterApiUrl('mainnet-beta'),
     );
     const num = Number(requestUrl.pathname.split('/').pop());
     // create an instruction to transfer native SOL from one wallet to another
